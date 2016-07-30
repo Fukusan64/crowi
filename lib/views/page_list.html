@@ -11,13 +11,8 @@
 
 {% block content_head_before %}
 {% endblock %}
-
 <div class="header-wrap">
   <header class="portal-header {% if page %}has-page{% endif %}">
-    {% if page %}
-      <a href="#" title="Bookmark" class="bookmark-link" id="bookmark-button" data-bookmarked="0"><i class="fa fa-star-o"></i></a>
-
-    {% endif %}
     <h1 class="title">
       <span class="" id="revision-path">{{ path|insertSpaceToEachSlashes }}</span>
       {% if searchConfigured() && !isTopPage() && !isTrashPage() %}
