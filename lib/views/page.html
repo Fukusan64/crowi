@@ -12,7 +12,6 @@
   <header id="page-header">
     <p class="stopper"><a href="#" data-affix-disable="#page-header"><i class="fa fa-chevron-up"></i></a></p>
     {% if page %}
-      <a href="#" title="Bookmark" class="bookmark-link" id="bookmark-button" data-bookmarked="0"><i class="fa fa-star-o"></i></a>
       {% if page.joinAble %}
         {% if page.isJoined(user) %}
           <a href="#" title="Join" class="join-link btn btn-danger" id="join-button" data-joined="true">参加しない</a>
