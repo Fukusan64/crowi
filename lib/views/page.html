@@ -68,6 +68,7 @@
   {% if page.isDeleted() %}
   <div class="alert alert-danger">
     <form role="form" class="pull-right" id="revert-delete-page-form" onsubmit="return false;">
+      <input type="hidden" name="_csrf" value="{{ _csrf() }}">
       <input type="hidden" name="path" value="{{ page.path }}">
       <input type="hidden" name="page_id" value="{{ page._id.toString() }}">
       <input type="submit" class="btn btn-danger btn-inverse btn-sm" value="Put Back!">
@@ -106,6 +107,7 @@
       <ul class="dropdown-menu">
        <li><a href="#" data-target="#renamePage" data-toggle="modal"><i class="fa fa-share"></i> 移動</a></li>
        <li><a href="?presentation=1" class="toggle-presentation"><i class="fa fa-arrows-alt"></i> プレゼンモード (beta)</a></li>
+       {% if isDeletablePage() %}
        <li class="divider"></li>
        {% if page.joinAble %}
          <li><a href="#" id="joinable-link" data-joinable="true"><i class="fa fa-user"> 参加不可能にする</i></a></li>
@@ -114,6 +116,7 @@
        {% endif %}
        <li class="divider"></li>
        <li class=""><a href="#" data-target="#deletePage" data-toggle="modal"><i class="fa fa-trash-o text-danger"></i> 削除</a></li>
+       {% endif %}
       </ul>
     </li>
     {% if page %}
