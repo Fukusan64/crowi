@@ -639,9 +639,21 @@ $(function() {
 
     $joinButton.on('click', function() {
       if ($joinButton.data('joined')) {
-        console.log("現在参加済み");
+        $.post('/_api/pages.leave', {page_id: pageId}, function(res) {
+          if (res.ok) {
+            $joinButton.removeClass('btn-danger').addClass('btn-default');
+            $joinButton.text('参加');
+            $joinButton.data('joined', false);
+          }
+        });
       } else {
-        console.log("現在参加していない");
+        $.post('/_api/pages.join', {page_id: pageId}, function(res) {
+          if (res.ok) {
+            $joinButton.removeClass('btn-default').addClass('btn-danger');
+            $joinButton.text('参加しない');
+            $joinButton.data('joined', true);
+          }
+        });
       }
     });
 
