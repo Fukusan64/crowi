@@ -16,9 +16,7 @@
     {% if page %}
       <a href="#" title="Bookmark" class="bookmark-link" id="bookmark-button" data-bookmarked="0"><i class="fa fa-star-o"></i></a>
       {% if page.joinAble %}
-        <a href="#" title="Join" class="join-link btn btn-danger" id="join-button" data-joined="true">参加負可能にする</a>
-      {% else %}
-        <a href="#" title="Join" class="join-link btn btn-default" id="join-button" data-joined="false">参加可能にする</a>
+        <a href="#" title="Join" class="join-link btn btn-danger" id="join-button" data-joined=""></a>
       {% endif %}
     {% endif %}
     <h1 class="title" id="revision-path">{{ path|insertSpaceToEachSlashes }}</h1>
