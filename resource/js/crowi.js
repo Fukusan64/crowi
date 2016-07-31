@@ -645,6 +645,17 @@ $(function() {
       }
     });
 
+    var $joinableLink = $('#joinable-link');
+    $joinableLink.on('click', function() {
+      var $joinable = $joinableLink.data('joinable');
+      $.post('/_api/pages.joinable', {page_id: pageId, joinable: !$joinable}, function(res) {
+        if (res.ok) {
+          window.location.reload();
+        }
+      });
+      return true;
+    });
+
     // bookmark
     var $bookmarkButton = $('#bookmark-button');
     $.get('/_api/bookmarks.get', {page_id: pageId}, function(res) {
