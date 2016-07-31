@@ -11,8 +11,6 @@
   {% if not page.isDeleted() %}
   <header id="page-header">
     <p class="stopper"><a href="#" data-affix-disable="#page-header"><i class="fa fa-chevron-up"></i></a></p>
-
-
     {% if page %}
       <a href="#" title="Bookmark" class="bookmark-link" id="bookmark-button" data-bookmarked="0"><i class="fa fa-star-o"></i></a>
       {% if page.joinAble %}
@@ -28,7 +26,6 @@
   {% else %}
   {# trash/* #}
   <header id="page-header">
-    <a href="#" title="Bookmark" class="bookmark-link" id="bookmark-button" data-bookmarked="0"><i class="fa fa-star-o"></i></a>
     <h1 class="title">{{ path|insertSpaceToEachSlashes }}</h1>
   </header>
   {% endif %}

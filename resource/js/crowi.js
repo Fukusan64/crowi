@@ -293,8 +293,10 @@ $(function() {
     if (name === '') {
       prefix = prefix.slice(0, -1);
     }
-    top.location.href = prefix + name;
-
+    var path = (prefix + name).replace(/\/+$/,'');
+    $('#create-new-page').children('#new-page-path').val(path);
+    $('#create-new-page').children('#new-page-body').val("# " + path);
+    $('#create-new-page').submit();
     return false;
   });
 
