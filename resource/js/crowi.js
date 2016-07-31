@@ -635,6 +635,16 @@ $(function() {
       }
     });
 
+    var $joinButton = $('#join-button');
+
+    $joinButton.on('click', function() {
+      if ($joinButton.data('joined')) {
+        console.log("現在参加済み");
+      } else {
+        console.log("現在参加していない");
+      }
+    });
+
     // bookmark
     var $bookmarkButton = $('#bookmark-button');
     $.get('/_api/bookmarks.get', {page_id: pageId}, function(res) {
