@@ -108,12 +108,14 @@
        <li><a href="#" data-target="#renamePage" data-toggle="modal"><i class="fa fa-share"></i> 移動</a></li>
        <li><a href="?presentation=1" class="toggle-presentation"><i class="fa fa-arrows-alt"></i> プレゼンモード (beta)</a></li>
        {% if isDeletablePage() %}
-       <li class="divider"></li>
-       {% if page.joinAble %}
-         <li><a href="#" id="joinable-link" data-joinable="true"><i class="fa fa-user"> 参加不可能にする</i></a></li>
-       {% else %}
-         <li><a href="#" id="joinable-link" data-joinable="false"><i class="fa fa-user"> 参加可能にする</i></a></li>
-       {% endif %}
+         {% if page.isCreator(user) or user.admin or page.isGrantedFor(user) %}
+           <li class="divider"></li>
+           {% if page.joinAble %}
+             <li><a href="#" id="joinable-link" data-joinable="true"><i class="fa fa-user"> 参加不可能にする</i></a></li>
+           {% else %}
+             <li><a href="#" id="joinable-link" data-joinable="false"><i class="fa fa-user"> 参加可能にする</i></a></li>
+           {% endif %}
+         {% endif %}
        <li class="divider"></li>
        <li class=""><a href="#" data-target="#deletePage" data-toggle="modal"><i class="fa fa-trash-o text-danger"></i> 削除</a></li>
        {% endif %}
