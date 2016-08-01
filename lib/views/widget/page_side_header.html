@@ -36,5 +36,19 @@
       </dd>
     </dl>
   </div>
+  <div class="row">
+    <dt class="col-md-offset-1 col-md-4"><i class="fa fa-users"></i> 参加者</dt>
+    <dd class="col-md-7">
+      <ul>
+        {% for user in page.joinedUsers %}
+        <li>
+          <a href="{{ userPageRoot(user) }}">
+            {{ user.name }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </dd>
+  </div>
 </div>
 {% endif %} {# if page }}} #}
