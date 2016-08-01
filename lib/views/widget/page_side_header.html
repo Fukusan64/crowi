@@ -39,9 +39,9 @@
   <div class="row">
     <dt class="col-md-offset-1 col-md-4"><i class="fa fa-users"></i> 参加者</dt>
     <dd class="col-md-7">
-      <ul>
+      <ul id="joined-users">
         {% for user in page.joinedUsers %}
-        <li>
+        <li data-user-id="{{ user._id.toString() }}">
           <a href="{{ userPageRoot(user) }}">
             {{ user.name }}
           </a>

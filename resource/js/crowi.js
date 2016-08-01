@@ -662,6 +662,7 @@ $(function() {
     });
 
     var $joinButton = $('#join-button');
+    var $joinedUsers = $('#joined-users');
 
     $joinButton.on('click', function() {
       if ($joinButton.data('joined')) {
@@ -670,6 +671,7 @@ $(function() {
             $joinButton.removeClass('btn-danger').addClass('btn-default');
             $joinButton.text('参加');
             $joinButton.data('joined', false);
+            $joinedUsers.find('[data-user-id=' + res.user._id.toString() + ']').remove();
           }
         });
       } else {
@@ -678,6 +680,9 @@ $(function() {
             $joinButton.removeClass('btn-default').addClass('btn-danger');
             $joinButton.text('参加しない');
             $joinButton.data('joined', true);
+            var a_tag = $('<a>').attr('href', '/user/' + res.user.username).text(res.user.name);
+            var li_tag = $('<li>').attr('data-user-id', res.user._id).append(a_tag);
+            $joinedUsers.append(li_tag);
           }
         });
       }
