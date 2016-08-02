@@ -95,7 +95,7 @@
       </a>
     </li>
 
-    {% if not pageUser or page.isCreator(user) or user.admin %}
+    {% if (not pageUser or page.isCreator(user) or user.admin) and (page.isEdit() or user.admin or page.isCreator(user)) %}
     <li {% if req.body.pageForm %}class="active"{% endif %}><a href="#edit-form" data-toggle="tab"><i class="fa fa-pencil-square-o"></i> 編集</a></li>
     {% endif %}
 
