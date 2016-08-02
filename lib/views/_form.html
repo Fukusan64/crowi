@@ -43,6 +43,15 @@
         {% if forceGrant %}
         <input type="hidden" name="pageForm[grant]" value="{{ forceGrant }}">
         {% else %}
+
+        {% if (page.isCreator(user) or user.admin) and not pageUser %}
+        <select name="pageForm[canEdit]" class="form-control">
+          {% for editId, editLabel in consts.editGrants %}
+          <option value="{{ editId }}" {% if pageForm.canEdit|default(page.canEdit) == editId %}selected{% endif %}>{{ editLabel }}</option>
+          {% endfor %}
+        </select>
+        {% endif %}
+
         <select name="pageForm[grant]" class="form-control">
           {% for grantId, grantLabel in consts.pageGrants %}
           <option value="{{ grantId }}" {% if pageForm.grant|default(page.grant) == grantId %}selected{% endif %}>{{ grantLabel }}</option>
