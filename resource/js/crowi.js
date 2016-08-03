@@ -310,8 +310,7 @@ $(function() {
   $('#createMemo').on('shown.bs.modal', function (e) {
     $('#memoName').focus();
   });
-  $('#createMemoForm').submit(function(e)
-  {
+  $('#createMemoForm').submit(function(e) {
     var prefix = $('[name=memoNamePrefix]', this).val();
     var name = $('[name=memoName]', this).val();
     if (name === '') {
@@ -321,6 +320,18 @@ $(function() {
     $('#create-new-page').children('#new-page-path').val(path);
     $('#create-new-page').children('#new-page-body').val("# " + path);
     $('#create-new-page').submit();
+    return false;
+  });
+  $('#add-next-page').click(function (e) {
+    var prefix = $('#here-path').val();
+    var name = $('#next-page-name').val();
+    if (name === '') {
+        prefix = prefix.slice(0, -1);
+    }
+    var path = (prefix + name).replace(/\/+$/,'');
+    $('#create-next-page').children('#next-page-path').val(path);
+    $('#create-next-page').children('#next-page-body').val("# " + path);
+    $('#create-next-page').submit();
     return false;
   });
 

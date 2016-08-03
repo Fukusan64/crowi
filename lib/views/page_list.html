@@ -27,6 +27,16 @@
       </form>
       {% endif %}
     </h1>
+    <input type="hidden" id="here-path" value="{{ path }}">
+    <input type="text" id="next-page-name">
+    <input type="button" id="add-next-page" value="ページを追加">
+    <form action="/_/edit" method="post" id="create-next-page">
+      <input type="hidden" name="pageForm[body]" id="next-page-body" value="">
+      <input type="hidden" name="pageForm[path]" id="next-page-path" value="">
+      <input type="hidden" name="pageForm[grant]" id="next-page-grant" value="1">
+      <input type="hidden" name="_csrf" value="{{ _csrf() }}">
+      <input type="hidden" name="pageForm[currentRevision]" id="next-page-currentRevision" value>
+    </form>
   </header>
 </div>
 
