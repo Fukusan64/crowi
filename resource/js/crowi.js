@@ -322,7 +322,7 @@ $(function() {
     $('#create-new-page').submit();
     return false;
   });
-  $('#add-next-page').click(function (e) {
+  $('#add-next-page-form').submit(function (e) {
     var prefix = $('#here-path').val();
     var name = $('#next-page-name').val();
     if (name === '') {
