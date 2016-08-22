@@ -310,6 +310,7 @@ $(function() {
   $('#createMemo').on('shown.bs.modal', function (e) {
     $('#memoName').focus();
   });
+  //TODO: ページの存在チェックを加える
   $('#createMemoForm').submit(function(e) {
     var prefix = $('[name=memoNamePrefix]', this).val();
     var name = $('[name=memoName]', this).val();
@@ -317,21 +318,51 @@ $(function() {
       prefix = prefix.slice(0, -1);
     }
     var path = (prefix + name).replace(/\/+$/,'');
-    $('#create-new-page').children('#new-page-path').val(path);
-    $('#create-new-page').children('#new-page-body').val("# " + path);
-    $('#create-new-page').submit();
+    $.ajax({
+      type: 'POST',
+      url: '/_/exists',
+      data: {
+        path:path
+      },
+      dataType: 'json',
+      timeout:10000
+    }).done(function(res) {
+      if(res.ok){
+        var exists = res.exists;
+        if(!exists){
+          $('#create-new-page').children('#new-page-path').val(path);
+          $('#create-new-page').children('#new-page-body').val("# " + path);
+          $('#create-new-page').submit();
+        }
+      }
+    });
     return false;
   });
   $('#add-next-page-form').submit(function (e) {
     var prefix = $('#here-path').val();
     var name = $('#next-page-name').val();
     if (name === '') {
-        prefix = prefix.slice(0, -1);
+      prefix = prefix.slice(0, -1);
     }
     var path = (prefix + name).replace(/\/+$/,'');
-    $('#create-next-page').children('#next-page-path').val(path);
-    $('#create-next-page').children('#next-page-body').val("# " + path);
-    $('#create-next-page').submit();
+    $.ajax({
+      type: 'POST',
+      url: '/_/exists',
+      data: {
+        path:path
+      },
+      dataType: 'json',
+      timeout:10000
+    }).done(function(res) {
+      if(res.ok){
+        var exists = res.exists;
+        if(!exists){
+          $('#create-next-page').children('#next-page-path').val(path);
+          $('#create-next-page').children('#next-page-body').val("# " + path);
+          $('#create-next-page').submit();
+        }
+      }
+    });
     return false;
   });
 
