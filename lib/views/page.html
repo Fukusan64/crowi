@@ -24,7 +24,7 @@
       <span id="revision-path">{{ path|insertSpaceToEachSlashes }}</span>
       <form class="input-group search-input-group hidden-xs hidden-sm" data-toggle="tooltip" data-placement="bottom" title="{{ path + '/' }} 以下にページを作成" id="add-next-page-form">
         <input type="hidden" id="here-path" value="{{ path +'/' }}">
-        <input class="search-listpage-input form-control" type="text" id="next-page-name">
+        <input class="search-listpage-input form-control" type="text" id="next-page-name" autocomplete="off">
         <span class="input-group-btn search-listpage-submit-group">
           <input class="btn btn-default" type="submit" id="submit-button" value="ページを追加">
         </span>
