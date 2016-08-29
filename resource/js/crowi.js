@@ -310,7 +310,6 @@ $(function() {
   $('#createMemo').on('shown.bs.modal', function (e) {
     $('#memoName').focus();
   });
-  //TODO: ページの存在チェックを加える
   $('#createMemoForm').submit(function(e) {
     var prefix = $('[name=memoNamePrefix]', this).val();
     var name = $('[name=memoName]', this).val();
@@ -329,9 +328,12 @@ $(function() {
     }).done(function(res) {
       if(res.ok){
         var exists = res.exists;
-        if(!exists){
+        if (exists) {
+          $('#create-new-page-check').html('<i class="fa fa-times-circle"></i> ' + res.message);
+          $('#create-new-page-check').addClass('alert-danger');
+        } else {
           $('#create-new-page').children('#new-page-path').val(path);
-          $('#create-new-page').children('#new-page-body').val("# " + path);
+          $('#create-new-page').children('#new-page-body').val('# ' + path);
           $('#create-new-page').submit();
         }
       }
@@ -356,11 +358,13 @@ $(function() {
     }).done(function(res) {
       if(res.ok){
         var exists = res.exists;
-        if(!exists){
-          $('#create-next-page').children('#next-page-path').val(path);
-          $('#create-next-page').children('#next-page-body').val("# " + path);
-          $('#create-next-page').submit();
-        }
+          if (exists) {
+              $('.tooltip-inner').text(res.message);
+          } else {
+              $('#create-next-page').children('#next-page-path').val(path);
+              $('#create-next-page').children('#next-page-body').val('# ' + path);
+              $('#create-next-page').submit();
+          }
       }
     });
     return false;
