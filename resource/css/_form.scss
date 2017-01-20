@@ -156,3 +156,9 @@ input:-moz-placeholder {
   }
 
 } // }}}
+@media screen and (max-width: 520px){
+  .scrollable{display:flex; overflow:auto;}
+}
+@media screen and (min-width: 520px){
+  .scrollable{float: right;}
+}
